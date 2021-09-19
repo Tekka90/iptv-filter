@@ -1,4 +1,17 @@
 <?php
+
+if(isset($_GET['pwd'])) {
+    $password = $_GET['pwd'];
+    $hash = password_hash($_ENV["PASSWORD"],PASSWORD_DEFAULT);
+    if (password_verify($password, $hash) == false) {
+        exit ();
+    }
+}
+else {
+    echo "Hello world!";
+    exit();
+}
+
 // configuration
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $today = date('Ymd');
